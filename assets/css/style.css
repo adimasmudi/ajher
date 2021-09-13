@@ -15,6 +15,10 @@ body {
     height:5.5vh;
 }
 
+.myBtn{
+    height:5.5vh;
+}
+
 /* scrollbar */
 ::-webkit-scrollbar {
     width: 12px;
