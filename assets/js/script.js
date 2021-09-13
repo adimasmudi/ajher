@@ -22,7 +22,6 @@ $(document).ready(function () {
     
     // slide-up script
     $('.scroll-up-btn').click(function(){
-        console.log("terclick")
         $('html,body').animate({scrollTop: $(".nav-modal")},'fast');
         // removing smooth scroll on slide-up button click
         $('html').css("scrollBehavior", "smooth");
