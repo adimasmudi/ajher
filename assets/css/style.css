@@ -1,18 +1,24 @@
 :root {
-    --brand-color: #00ddf3;
-    --second-brand-color: #1e3069;
-    --second-brand-color-hover : #00196d;
+    --brand-color:#1e3069  ;
+    --brand-color-hover : #00196d;
+    --second-brand-color: #00ddf3;
     --background-color: #f5f7fa;
+    --blue-background-color : #D1E7FF;
 }
 body {
     background-color: var(--background-color);
+}
+.bg-body-form{
+    background-color: var(--blue-background-color);
+}
+.myBtn{
+    height:5.5vh;
 }
 
 /* scrollbar */
 ::-webkit-scrollbar {
     width: 12px;
 }
- 
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
     border-radius: 10px;
@@ -21,13 +27,22 @@ body {
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-    background-color: var(--second-brand-color);
+    background-color: var(--brand-color);
 }
 ::-webkit-scrollbar-thumb:hover{
-    background-color: var(--second-brand-color-hover);
+    background-color: var(--brand-color-hover);
+}
+::-webkit-scrollbar-thumb:horizontal {
+    visibility: hidden;
 }
 .preloading img{
     width:100%;
+}
+.preloading .progress-bar, .preloading .progress{
+    height:1vh;
+}
+.img-width {
+    width: 70%;
 }
 h3 {
     font-size: 2.24vw;
@@ -39,9 +54,58 @@ h3 {
 .navbar {
     background-color: #fff;
 }
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
 #home {
     padding-top: 2.5rem;
+    background-color: var(--blue-background-color);
 }
+
+/* arrow bottom */
+.arrow{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.arrow:hover{
+    cursor:pointer;
+}
+.arrow span{
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-bottom: 5px solid #06A8FF;
+    border-right: 5px solid #06A8FF;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+.arrow span:nth-child(2){
+    animation-delay: -0.2s;
+}
+.arrow span:nth-child(3){
+    animation-delay: -0.4s;
+}
+@keyframes animate {
+    0%{
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px,-20px);
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: rotate(45deg) translate(20px,20px);
+    }
+}
+
+/*  */
 
 .text-garis {
     border-bottom: 2px solid var(--brand-color);
@@ -59,9 +123,7 @@ h3 {
 .pdb {
     margin-bottom: 80px;
 }
-/* .learn-more{
-    margin-top:14vh;
-} */
+
 .text-highlight {
     position: absolute;
     display: inline-block;
@@ -75,31 +137,26 @@ h3 {
 }
 .text-animation {
     font-weight: bolder;
-    color: var(--second-brand-color);
+    color: var(--brand-color);
 }
 /* activity */
-.activity-buttons {
-    display: flex;
-    justify-content: space-between;
+#activity-container{
+    background-color: var(--blue-background-color);
 }
-.activity-button-active {
-    margin-bottom: 2vh;
-}
-.activity-content {
-    height: 30vh;
-}
-.activity-content-text {
-    background-color: #fff;
-    padding: 1rem;
-}
-
 /* cards */
 .card {
+    background: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    height: 300px;
+    margin: 1rem;
+    position: relative;
     width: 15rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 .card:hover{
-    box-shadow: 0px 2px 5px 2px gray;
-    transition: 0.5s;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 .card .box {
     height: 2rem;
@@ -109,7 +166,7 @@ h3 {
 
 /* footer */
 .footer-top {
-    background-color: var(--second-brand-color);
+    background-color: var(--brand-color);
     color: #fff;
 }
 .uk-text {
@@ -118,11 +175,22 @@ h3 {
 .uk-text-desc {
     font-size: 1.5vw;
 }
-
+.title-text{
+    font-size:2vw;
+}
+.text-explain{
+    font-size:1.3vw;
+}
 /* for DOM manipulation */
 .hidden {
     display: none;
     transition: 1s;
+}
+.hidden-error{
+    visibility: hidden;
+}
+.show-error{
+    visibility: visible;
 }
 
 /* preloading */
@@ -133,13 +201,47 @@ h3 {
     width: 100%;
     height: 100%;
 }
+
+/* scroll-up btn */
+
+.scroll-up-btn{
+    position: fixed;
+    height: 45px;
+    width: 42px;
+    background: var(--brand-color);
+    right: 30px;
+    bottom: 10px;
+    text-align: center;
+    line-height: 45px;
+    color: #fff;
+    z-index: 999999999;
+    font-size: 30px;
+    border-radius: 6px;
+    border-bottom-width: 2px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.scroll-up-btn.show{
+    bottom: 30px;
+    opacity: 1;
+    pointer-events: auto;
+}
+.scroll-up-btn:hover{
+    filter: brightness(90%);
+}
 /* Modal */
 
-.modal-body {
-    overflow: hidden;
+.container-form{
+    height:100%;
+    width:70%;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow:hidden;
 }
 .text-active{
-    color: var(--second-brand-color);
+    color: var(--brand-color);
     cursor:pointer;
 }
 .login, .sign-up {
@@ -154,7 +256,7 @@ h3 {
     margin:0 auto;
     height: 1%;
     position: absolute;
-    top : 48;
+    top : 33px;
 }
 .progress-signup {
     width: 0%;
@@ -170,24 +272,23 @@ h3 {
     margin:0 auto;
 }
 .circle {
-    height: 1.5vh;
-    width: 1.5vh;
+    height: 2vh;
+    width: 2vh;
     display: inline-block;
     border-radius: 50%;
     position: relative;
     z-index:999999;
 }
 
-.signup form {
+.sign-up form {
     position: absolute;
-    left: 0;
     transition: 1s;
 }
 .sign-up .phone-number input[type=text]:first-child{
     width:15%;
 }
-.sign-up .phone-number input[type=text]:nth-child(2){
-    width:80%;
+.phone-number-input{
+    width:70%;
 }
 .btn-click {
     width: 30%;
@@ -201,12 +302,22 @@ h3 {
     padding-left: 10%;
 }
 .btn-active {
-    background-color: var(--second-brand-color);
+    background-color: var(--brand-color);
     color: #fff;
 }
 .btn-active:hover{
-    background-color: var(--second-brand-color-hover);
+    background-color: var(--brand-color-hover);
     color: #fff;
+}
+.second-btn-active{
+    background-color: none;
+    color : var(--brand-color);
+    border:1px solid var(--brand-color);
+}
+.second-btn-active:hover{
+    background-color: var(--brand-color);
+    color:#fff;
+    cursor:pointer;
 }
 .bg-muted {
     background-color: #c4c4c4;
@@ -216,15 +327,17 @@ h3 {
 .signup-page-2,
 .signup-page-3,
 .signup-page-4 {
-    position: absolute;
-    top: 50;
+    /* position: absolute; */
     width: 90%;
     padding-left: 5%;
+}
+.signup-page-1{
+    left:0px;
 }
 .signup-page-2,
 .signup-page-3,
 .signup-page-4 {
-    left: 500;
+    left: 800px;
 }
 
 /* Navbar Animasi */
@@ -309,6 +422,27 @@ h3 {
     .preloading img{
         width:30%;
     }
+    #home{
+        height:100vh;
+    }
+    .caption-box h3{
+        font-size:100%;
+    }
+    .caption-box .text-highlight{
+        height:6vw;
+    }
+    .caption-box p{
+        font-size:200%;
+    }
+    .svg-icon-banner{
+        width:95%;
+    }
+    .title-text{
+        font-size:5vw;
+    }
+    .text-explain{
+        font-size:4vw;
+    }
     .fs-text {
         font-size: 8px;
     }
@@ -328,5 +462,16 @@ h3 {
     }
     .pdb {
         margin-bottom: 20px;
+    }
+    .container-form{
+        width:100%;
+        height:100vh;
+    }
+    .img-form{
+        display:flex;
+        justify-content: center;
+    }
+    .img-form img{
+        width:40%;
     }
 }

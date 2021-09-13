@@ -7,6 +7,9 @@
 	position: relative;
 	/* margin-top: 200px; */
 }
+.name-about, .quotes-about{
+	font-size:2vw;
+}
 .animation-tittle{
 	animation: tittle-move 4s forwards ;
 }
@@ -28,11 +31,7 @@
 	padding-right: 10px;
 	padding-left: 10px;
 }
-.bio {
-	margin-top: 10px;
-	animation-delay: inherit;
-}
-.slogan{
+.slogan, .put-email{
 	font-size: 1.3vw;
 }
 .def {
@@ -42,10 +41,6 @@
 .info {
 	margin-top: 20vw;
 }
-.all {
-	margin-top: 120px;
-}
-
 
 @keyframes tittle-move {
 	from {
@@ -67,6 +62,17 @@
 @media screen and (max-width: 600px) {
 	.teamwork {
 		padding-right: 8vw;
+		margin-top:20vh;
+		width:80%;
+	}
+	.name-about, .quotes-about{
+		font-size:5vw;
+	}
+	.slogan, .put-email{
+		font-size: 4vw;
+	}
+	.sosmed{
+		width:6vh;
 	}
 	.all{
 		margin-top: 50px;
@@ -74,4 +80,5 @@
 	.allabout{
 		margin-bottom: 10vw;
 	}
+	
 }

@@ -1,9 +1,6 @@
+import * as Validate from './validate.js';
 // modal login and signup toggle
-$(document).ready(function () {
-    $('.first-button').on('click', function () {
-        $('.animated-icon1').toggleClass('open');
-    });
-});
+
 
 // select element
 const selectCountry = document.querySelector('.select-country');
@@ -19,9 +16,11 @@ const getCountry = async function(){
 
 // put to select option
 getCountry().then(a => {
+    let html = ``;
     a.forEach(function(dat){
-        optionSelect.insertAdjacentHTML('afterend',`<option value="${dat.name}">${dat.name}</option>`);
+        html+=`<option value="${dat.name}">${dat.name}</option>`;
     });
+    optionSelect.insertAdjacentHTML('afterend',html);
 });
 
 // change value phone calling codes
@@ -62,7 +61,6 @@ signupToggleBtn.addEventListener('click', function () {
 signupToggleText.addEventListener('click', function () {
     toggleBtnFunc(signupToggleBtn, loginToggleBtn, signupBox, loginBox);
 });
-
 // signup modal
 // selecting the elements
 const form1 = document.querySelector('.signup-page-1');
@@ -86,56 +84,80 @@ const progressSignup = document.querySelector('.progress-signup');
 
 // step by step login-signup function
 const stepFunction = function (form1, form2, value1, value2, width, classSelector,back=false) {
-    form1.style.left = `${value1}`;
-    form2.style.left = `${value2}`;
+    form1.style.left = `${value1}px`;
+    form2.style.left = `${value2}px`;
     form1.style.transition = '1s';
     form2.style.transition = '1s';
     progressSignup.style.width = `${width}%`;
+    
     if(!back){
-        document.querySelector(classSelector).classList.remove('bg-secondary');
-        document.querySelector(classSelector).classList.add('bg-primary');
+        setTimeout(function(){
+            document.querySelector(classSelector).classList.remove('bg-secondary');
+            document.querySelector(classSelector).classList.add('bg-primary');
+        },1000);
     }else{
         document.querySelector(classSelector).classList.remove('bg-primary');
         document.querySelector(classSelector).classList.add('bg-secondary');
     }
     
 };
+let back;
 
-btnNext1.addEventListener('click', function () {
-    stepFunction(form1, form2, -500, 0, 31, '.circle-2');
+const toggleError = function(func,className){
+    
+    if(!func){
+        document.querySelector(className).classList.remove('hidden-error');
+    }else{
+        document.querySelector(className).classList.add('hidden-error');
+    }
+}
+btnNext1.addEventListener('click', function (e) {
+    if(Validate.selectValidate() && Validate.phoneNumberValidate()){
+        stepFunction(form1, form2, -800, 0, 31, '.circle-2');
+    }
+    toggleError(Validate.selectValidate(),".select-error");
+    toggleError(Validate.phoneNumberValidate(),".phone-number-error")
+
 });
 
 btnNext2.addEventListener('click', function () {
-    stepFunction(form2, form3, -500, 0, 61, '.circle-3');
+    
+    if(Validate.nameSignupValidate() && Validate.emailSignupValidate() && Validate.passwordSignupValidate && Validate.passwordConfirmValidate()){
+        stepFunction(form2, form3, -800, 0, 61, '.circle-3');
+    }
+    
+    toggleError(Validate.nameSignupValidate(),".name-error");
+    toggleError(Validate.emailSignupValidate(),".email-signup-error");
+    toggleError(Validate.passwordSignupValidate(),'.password-signup-error');
+    toggleError(Validate.passwordConfirmValidate(),'.password-confirm-error');
+   
 });
 
 btnNext3.addEventListener('click', function () {
-    stepFunction(form3, form4, -500, 0, 91, '.circle-4');
+    
+    if(Validate.dateValidate()){
+        stepFunction(form3, form4, -800, 0, 91.5, '.circle-4');
+    }
+    toggleError(Validate.dateValidate(),".date-error");
+
+    
+    
 });
 
 btnPrev2.addEventListener('click', function () {
-    stepFunction(form1, form2, 0, 500, 0, '.circle-2',back=true);
+    stepFunction(form1, form2, 0, 800, 0, '.circle-2',back=true);
 });
 
 btnPrev3.addEventListener('click', function () {
-    stepFunction(form2, form3, 0, 500, 31, '.circle-3',back=true);
+    stepFunction(form2, form3, 0, 800, 31, '.circle-3',back=true);
 });
 
 btnPrev4.addEventListener('click', function () {
-    stepFunction(form3, form4, 0, 500, 61, '.circle-4',back=true);
+    stepFunction(form3, form4, 0, 800, 61, '.circle-4',back=true);
 });
 
-const navItemList = document.querySelectorAll('.nav-item');
-navItemList.forEach(function(data){
-    data.children[0].classList.remove('active');
-    data.children[0].classList.remove('text-info');
-    data.children[0].classList.remove('text-garis');
-
-    if(data.dataset.page === window.location.href.split('/')[3].split('.')[0]){
-        const elementActive = document.querySelector(`[data-page="${data.dataset.page}"]`);
-        elementActive.children[0].classList.add('active');
-        elementActive.children[0].classList.add('text-info');
-        elementActive.children[0].classList.add('text-garis');
-    }
-});
+form4.addEventListener('submit',function(e){
+    e.preventDefault();
+    location.href = 'dashboard/dashboard.html';
+})
 
