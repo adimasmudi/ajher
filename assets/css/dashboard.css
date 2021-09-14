@@ -56,9 +56,6 @@ body{
 .sidebar-menu-list{
     line-height: 20px;
 }
-.setting{
-    height:100vh;
-}
 
 .isi{
     width:80%;
@@ -67,10 +64,11 @@ body{
 }
 
 .class-image{
+    height:60%;
     width:100%;
 }
 
-.no-shedule{
+.no-shedule, .no-quiz{
     color : gray;
 }
 
@@ -117,10 +115,9 @@ body{
     .notifications{
         width:100%;
     }
-    .notifications .card{
-        width:90%;
-    }
-    .schedule{
+    
+    .schedule, .quiz{
         margin-top:40%;
     }
+    
 }

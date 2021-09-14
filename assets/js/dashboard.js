@@ -57,10 +57,15 @@ allScreen.addEventListener('click',function(){
 // sidebar event when click
 
 const sidebarBtn = document.querySelectorAll(".menu-item");
+const sectionIsi = document.querySelectorAll(".section-isi");
+
 sidebarBtn.forEach(function(btn){
     btn.addEventListener('click',function(){
+        sectionIsi.forEach((isi)=>isi.classList.add('hidden'));
         sidebarBtn.forEach((btn)=>btn.classList.remove('menu-item__active'));
-        console.log(btn.dataset.menu)
         btn.classList.add('menu-item__active');
+        document.querySelector(`.${btn.dataset.menu}`).classList.remove('hidden')
     })
 })
+
+
