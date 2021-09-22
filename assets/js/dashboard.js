@@ -24,11 +24,23 @@ const sidebar = document.querySelector(".sidebar-menu");
 const sidebarLogo = document.querySelector(".sidebar-logo");
 const allScreen = document.querySelector(".all-screen");
 
+const hideSidebar = function(){
+    sidebarLogo.classList.add("hidden");
+    sidebar.classList.add("hide")
+    allScreen.classList.add('hidden');
+    body.style.overflow = 'visible';
+}
+if(window.screen.availWidth < 600){
+    hideSidebar();
+}else{
+    sidebar.classList.remove("hide");
+}
+
 window.addEventListener('resize',function(){
     if(window.screen.availWidth < 600){
-        sidebar.classList.add("hide")
+        hideSidebar();
     }else{
-        sidebar.classList.remove("hide")
+        sidebar.classList.remove("hide");
     }
 })
 
@@ -40,18 +52,12 @@ barButton.addEventListener('click',function(){
 });
 sidebar.addEventListener('click',function(){
     if(window.screen.availWidth < 600){
-        sidebarLogo.classList.add("hidden");
-        sidebar.classList.add("hide")
-        allScreen.classList.add('hidden');
-        body.style.overflow = 'visible';
+        hideSidebar();
     }  
 });
 
 allScreen.addEventListener('click',function(){
-    sidebarLogo.classList.add("hidden");
-    sidebar.classList.add("hide")
-    allScreen.classList.add('hidden');
-    body.style.overflow = 'visible';
+    hideSidebar();
 });
 
 // sidebar event when click
