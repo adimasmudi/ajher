@@ -6,4 +6,4 @@ AJher is an application that provides learning management service to make studen
 # how to open this?
 1. You can open using live-server extension in VS Code
 2. You can also open using node live-server
-3. open from github pages link
+3. open from github pages link --> adimasmudi.github.io/ajher/

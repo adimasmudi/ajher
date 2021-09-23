@@ -9,7 +9,7 @@ const valuePhone = document.querySelector('.value-phone');
 
 // fetch from API
 const getCountry = async function(){
-    const res = await fetch("https://restcountries.eu/rest/v1/all" );
+    const res = await fetch("https://restcountries.com/v3/all" );
     const country = res.json();
     return country;
 }
@@ -17,8 +17,9 @@ const getCountry = async function(){
 // put to select option
 getCountry().then(a => {
     let html = ``;
-    a.forEach(function(dat){
-        html+=`<option value="${dat.name}">${dat.name}</option>`;
+    const countryList = a.map(c => c.name.common).sort();
+    countryList.forEach(function(dat){
+        html+=`<option value="${dat}">${dat}</option>`;
     });
     optionSelect.insertAdjacentHTML('afterend',html);
 });
@@ -26,8 +27,9 @@ getCountry().then(a => {
 // change value phone calling codes
 selectCountry.addEventListener('change',function(){
     getCountry().then(a => {
-        const c = a.filter(b => b.name == selectCountry.value);
-        valuePhone.value = `+${c[0].callingCodes[0]}`;
+        const c = a.filter(b => b.name.common == selectCountry.value);
+        // valuePhone.value = `+${c[0].callingCodes[0]}`;
+        valuePhone.value = c[0].idd.root+c[0].idd.suffixes.join('');
     });
 });
 

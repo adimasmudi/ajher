@@ -72,3 +72,4 @@ if(progressBar){
     });
 }
 
+console.clear()
