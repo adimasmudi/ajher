@@ -74,4 +74,39 @@ sidebarBtn.forEach(function(btn){
     })
 })
 
+// isi kelas
 
+const classCard = document.querySelectorAll(".class-card");
+const classList = document.querySelector(".class-list");
+const isiKelas = document.querySelector(".isi-kelas");
+
+const backToClass = document.querySelector(".back-to-class");
+
+classCard.forEach(function(card){
+    card.addEventListener("click",function(){
+        classList.classList.add("hidden");
+        isiKelas.classList.remove("hidden");
+    })
+})
+
+backToClass.addEventListener("click",function(){
+    classList.classList.remove("hidden");
+    isiKelas.classList.add("hidden");
+})
+
+const classToggleButtons = document.querySelectorAll(".class-toggle-button");
+const contentEachClass = document.querySelectorAll(".content-each-class");
+classToggleButtons.forEach(function(btn){
+    btn.addEventListener('click',function(){
+        classToggleButtons.forEach((b)=>b.classList.remove('isi-kelas-active'));
+        contentEachClass.forEach((c)=>{
+            c.classList.add("hidden")
+            if (c.dataset.content === btn.classList[1].split('-')[1]){
+                c.classList.remove("hidden");
+            }
+        });
+        btn.classList.add("isi-kelas-active");
+        
+    })
+    
+})

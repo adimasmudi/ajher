@@ -68,11 +68,181 @@ body{
     width:100%;
 }
 
+.card-notif{
+    height:25%;
+    width:60%;
+}
 .no-shedule, .no-quiz{
     color : gray;
 }
 
+.card:hover{
+    cursor:pointer;
 
+}
+
+/* isi kelas */
+.isi-kelas-active{
+    font-weight:bolder;
+    border-bottom : 2px solid var(--brand-color);
+    color: var(--brand-color);
+}
+.isi-kelas svg{
+    height:30px;
+    width:30px;
+}
+
+.isi-kelas svg:hover{
+    cursor:pointer;
+}
+
+.isi-kelas .class-activity:hover, .isi-kelas .class-chat:hover ,.isi-kelas .class-classwork:hover, .isi-kelas .class-member:hover{
+    cursor:pointer;
+}
+
+
+
+.isi-kelas .classwork .card, .isi-kelas .activity .card{
+    width:35rem;
+}
+
+.isi .classwork .card-body p{
+    font-size:15px;
+}
+
+/* chat */
+.isi-kelas .chat-display{
+    width:100%;
+    height:35rem;
+    background-color: #fff;
+    
+}
+
+.isi-kelas .chat-display .input-text-chat{
+    border-radius:20px;
+    border:none;
+    background-color: rgb(201, 201, 201);
+    padding-left:10px;
+}
+
+.isi-kelas .chat-display .input-text-chat:focus{
+    outline:none;
+}
+.isi-kelas .chat-group-button{
+    width:50%;
+    position:fixed;
+    bottom:10px;
+}
+.media {
+    padding: 16px 12px;
+    -webkit-transition: background-color .2s linear;
+    transition: background-color .2s linear
+}
+
+.media-chat .media-body {
+    -webkit-box-flex: initial;
+    flex: initial;
+    display: table
+}
+
+.media-body {
+    min-width: 0
+}
+
+.media-chat .media-body p {
+    position: relative;
+    padding: 6px 8px;
+    margin: 4px 0;
+    background-color: #f5f6f7;
+    border-radius: 3px;
+    font-weight: 100;
+    color: #6b6b6b
+}
+
+.media>* {
+    margin: 0 8px
+}
+
+.media-chat .media-body p.meta {
+    background-color: transparent !important;
+    padding: 0;
+    opacity: .8;
+}
+
+.media-meta-day {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 0;
+    color: #8b95a5;
+    opacity: .8;
+    font-weight: 400
+}
+
+.media {
+    padding: 16px 12px;
+    -webkit-transition: background-color .2s linear;
+    transition: background-color .2s linear
+}
+
+.media-meta-day::before {
+    margin-right: 16px
+}
+
+.media-meta-day::before,
+.media-meta-day::after {
+    content: '';
+    -webkit-box-flex: 1;
+    flex: 1 1;
+    border-top: 1px solid #ebebeb
+}
+
+.media-meta-day::after {
+    content: '';
+    -webkit-box-flex: 1;
+    flex: 1 1;
+    border-top: 1px solid #ebebeb
+}
+
+.media-meta-day::after {
+    margin-left: 16px
+}
+
+.media-chat.media-chat-reverse {
+    padding-right: 12px;
+    padding-left: 64px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    flex-direction: row-reverse;
+    
+}
+
+.media-chat {
+    padding-right: 64px;
+    margin-bottom: 0
+}
+
+.media {
+    padding: 16px 12px;
+    -webkit-transition: background-color .2s linear;
+    transition: background-color .2s linear
+}
+
+.media-chat.media-chat-reverse .media-body p {
+    float: right;
+    clear: right;
+    background-color: #48b0f7;
+    color: #fff
+}
+
+.media-chat .media-body p {
+    position: relative;
+    padding: 6px 8px;
+    margin: 4px 0;
+    background-color: #f5f6f7;
+    border-radius: 3px
+}
 
 @media screen and (max-width: 600px){
     .all-screen{
@@ -115,9 +285,33 @@ body{
     .notifications{
         width:100%;
     }
+    .card-notif{
+        
+        width:90%;
+    }
     
     .schedule, .quiz{
         margin-top:40%;
     }
+    
+    .isi-kelas .col-md-2{
+        width:20%;
+        height : 30px;
+        font-size:0.8rem;
+    }
+    .isi-kelas .chat-display{
+        height:25rem;
+        
+    }
+
+    
+    .isi-kelas .chat-group-button{
+        width:100%;
+    }
+
+    .isi-kelas .classwork .card, .isi-kelas .activity .card{
+        width:18rem;
+    }
+
     
 }
